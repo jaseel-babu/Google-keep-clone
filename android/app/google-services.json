@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "427709022595",
+    "project_id": "keep-ef392",
+    "storage_bucket": "keep-ef392.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427709022595:android:0b849416d6f9eac1f336b6",
+        "android_client_info": {
+          "package_name": "com.example.keepsample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427709022595-0ib3481qnsgt2c89nnhojvvnhko2iu4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8dsqZaK9zwk6awznotHjsCb7XzL8itqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427709022595-0ib3481qnsgt2c89nnhojvvnhko2iu4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
