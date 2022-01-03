@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:keepsample/controller/navigationController.dart';
 import 'package:keepsample/view/createnote.dart/createNewNotes.dart';
 import 'package:keepsample/view/homepage/widgets/archeive.dart';
@@ -47,7 +48,7 @@ class HomePage extends StatelessWidget {
                             IconButton(
                               onPressed: () {
                                // controller.pageChanged(ReminderPage());
-                              
+                         
                               },
                               icon: const Icon(
                                 Icons.check_box_sharp,
@@ -129,15 +130,9 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      // FloatingActionButton(
-      //   shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      //   onPressed: () {
-      //     Get.to(() => CreateNewNotes());
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
+     
     ]);
   }
 
-  navigate(int i) {}
+ 
 }

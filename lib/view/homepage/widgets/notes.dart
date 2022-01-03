@@ -23,19 +23,16 @@ class _NotesPageState extends State<NotesPage> {
             stream: listTodos(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }
               List<NotesModel> notes = snapshot.data!.toList();
              
               return GridView.builder(shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount:2,),
                       itemCount: notes.length,
-                    
-
-
                 itemBuilder: (context, index) {
-                  return Card(
+                  return const Card(
                     child: Text('daf'),
                   );
                 },

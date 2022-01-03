@@ -8,7 +8,8 @@ final notesmodel = NotesModel();
 storefirestore(String title, String notes) async {
   notesmodel.title = title;
   notesmodel.notes = notes;
-  return await notesCollection.add(notesmodel.toMap());
+  return 
+  await notesCollection.add(notesmodel.toMap());
 }
 
 List<NotesModel> todoFromFirestore(QuerySnapshot snapshot) {

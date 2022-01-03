@@ -22,28 +22,25 @@ List draweritems = [
     'title': "Notes",
     'icon': Icons.lightbulb_outline,
   },
-  {
-    'title': "Reminder",
-    'icon': Icons.lightbulb_outline,
-  },
+  {'title': "Reminder", 'icon': Icons.notifications_none},
   {
     'title': "Create Label",
-    'icon': Icons.lightbulb_outline,
+    'icon': Icons.add,
   },
   {
     'title': "Archieve",
-    'icon': Icons.lightbulb_outline,
+    'icon': Icons.archive_outlined,
   },
   {
     'title': "Delete",
-    'icon': Icons.lightbulb_outline,
+    'icon': Icons.delete_outlined,
   },
   {
     'title': "Settings",
-    'icon': Icons.lightbulb_outline,
+    'icon': Icons.settings,
   },
   {
     'title': "Help & Feedback",
-    'icon': Icons.lightbulb_outline,
+    'icon': Icons.help_outline,
   }
 ];
