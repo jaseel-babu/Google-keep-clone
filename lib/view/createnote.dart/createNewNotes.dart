@@ -21,14 +21,13 @@ class _CreateNewNotesState extends State<CreateNewNotes> {
   TextEditingController noteControlletr = TextEditingController();
   @override
   void dispose() {
-    var a = readItems();
-    print(a);
     // titleControlletr.text.isNotEmpty
     //     ? dataservices.createnewnote(
     //         titleControlletr.text, noteControlletr.text)
     //     : print("moonji");
     // print(dataservices.readItems());
     storefirestore(titleControlletr.text, noteControlletr.text);
+
     super.dispose();
   }
 
@@ -73,30 +72,7 @@ class _CreateNewNotesState extends State<CreateNewNotes> {
     );
   }
 
-  storefirestore(String title, String notes) async {
-    final notesmodel = NotesModel();
-    notesmodel.title = title;
-    notesmodel.notes = notes;
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    // DocumentReference documentReferencer =
-    //     _mainCollection.doc(NotesModel.uid).collection('notes').doc();
-    // await documentReferencer
-    //     .set(notesmodel.toMap())
-    //     .whenComplete(() => print("Notes item added to the database"))
-    //     .catchError((e) => print(e));
-    firebaseFirestore
-        .collection("notes")
-        .doc(NotesModel.uid)
-        .set(notesmodel.toMap())
-        .whenComplete(() => print("Notes item added to the database"))
-        .catchError((e) => print(e));
-  }
+ 
 
-  late var notsmodel = NotesModel();
-  readItems() async {
-    CollectionReference notesItemCollection =
-        _mainCollection.doc().collection('notes');
-
-    return notesItemCollection.snapshots();
-  }
+ 
 }

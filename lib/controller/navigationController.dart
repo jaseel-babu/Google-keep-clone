@@ -5,8 +5,10 @@ import 'package:keepsample/view/homepage/widgets/notes.dart';
 
 class BottambarController extends GetxController {
   Widget currentStage = NotesPage();
-  pageChanged(var newPage) async {
+  int currentTab = 0;
+  pageChanged(var newPage ,int index) async {
     currentStage = newPage;
+    currentTab=index;
     update();
   }
 }
