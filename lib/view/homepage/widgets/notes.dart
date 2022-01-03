@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:keepsample/controller/navigationController.dart';
 import 'package:keepsample/controller/services/database_services.dart';
 import 'package:keepsample/model/notes.dart';
 import 'package:keepsample/view/homepage/widgets/menubar.dart';
@@ -13,6 +15,8 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
+  final controller = Get.put(BottambarController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,14 +30,23 @@ class _NotesPageState extends State<NotesPage> {
                 return const CircularProgressIndicator();
               }
               List<NotesModel> notes = snapshot.data!.toList();
-             
-              return GridView.builder(shrinkWrap: true,
-                gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:2,),
-                      itemCount: notes.length,
+
+              return GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 5),
+                itemCount: notes.length,
                 itemBuilder: (context, index) {
-                  return const Card(
-                    child: Text('daf'),
+                  return Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Column(
+                      children: [
+                        Text(notes[index].title.toString()),
+                        Text(notes[index].notes.toString())
+                      ],
+                    ),
                   );
                 },
               );

@@ -22,15 +22,27 @@ class DrawerMenu extends StatelessWidget {
         child: ListView(
           children: [
             const Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Text(
-                "Google Keep",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+                padding: EdgeInsets.all(15.0),
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Google ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: 'Keep',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                )),
             ListView.builder(
               shrinkWrap: true,
               itemCount: draweritems.length,

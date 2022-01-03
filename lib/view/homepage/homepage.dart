@@ -17,8 +17,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
  
-  final controller = Get.put(BottambarController());
-
+ 
   final PageStorageBucket bucket = PageStorageBucket();
 
   @override
