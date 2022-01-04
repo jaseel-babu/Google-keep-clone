@@ -16,122 +16,112 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
- 
- 
+
   final PageStorageBucket bucket = PageStorageBucket();
 
   @override
   Widget build(BuildContext context) {
-    return Stack(alignment: AlignmentDirectional.bottomEnd, children: [
+    return Stack(children: [
       Scaffold(
         drawer: DrawerMenu(),
-        body: GetBuilder<BottambarController>(builder: (controller) {
+        body: GetBuilder<Controller>(builder: (controller) {
           return PageStorage(bucket: bucket, child: controller.currentStage);
         }),
         backgroundColor: Colors.black,
-        bottomNavigationBar: GetBuilder<BottambarController>(
+        bottomNavigationBar: GetBuilder<Controller>(
           builder: (controller) {
-            return Stack(
-              children: [
-                BottomAppBar(
-                  color: Colors.grey[900],
-                  shape: CircularNotchedRectangle(),
-                  notchMargin: 32,
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                               // controller.pageChanged(ReminderPage());
-                         
-                              },
-                              icon: const Icon(
-                                Icons.check_box_sharp,
-                                color: Colors.white70,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                               // controller.pageChanged(ReminderPage());
-                              
-                              },
-                              icon: const Icon(
-                                Icons.brush,
-                                color: Colors.white70,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                              //  controller.pageChanged(ReminderPage());
-                              
-                              },
-                              icon: const Icon(
-                                Icons.mic_none_sharp,
-                                color: Colors.white70,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                             //   controller.pageChanged(ReminderPage());
-                              
-                              },
-                              icon: const Icon(
-                                Icons.image,
-                                color: Colors.white70,
-                              ),
-                            ),
-                          ],
+            return Container(
+              color: Colors.grey[900],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // controller.pageChanged(ReminderPage());
+                        },
+                        icon: const Icon(
+                          Icons.check_box_sharp,
+                          color: Colors.white70,
                         ),
-                      ],
-                    ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          // controller.pageChanged(ReminderPage());
+                        },
+                        icon: const Icon(
+                          Icons.brush,
+                          color: Colors.white70,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          //  controller.pageChanged(ReminderPage());
+                        },
+                        icon: const Icon(
+                          Icons.mic_none_sharp,
+                          color: Colors.white70,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          //   controller.pageChanged(ReminderPage());
+                        },
+                        icon: const Icon(
+                          Icons.image,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),
-      ),
-      Positioned(
-        bottom: 25,
-        right: 10,
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.black, borderRadius: BorderRadius.circular(20)),
-          width: 70,
-          height: 50,
-        ),
-      ),
-      Positioned(
-        bottom: 33,
-        right: 15,
-        child: GestureDetector(
-          onTap: () {
-            Get.to(() => CreateNewNotes());
-          },
-          child: Container(
-            width: 60,
-            decoration: BoxDecoration(
-                color: Colors.grey[900],
-                borderRadius: BorderRadius.circular(20)),
-            height: 55,
-            child: Container(
-              height: 20,
-              width: 30,
-              child: Image.asset(
-                "assets/images/Screenshot_from_2022-01-01_17-09-59-removebg-preview.png",
-                scale: 5.0,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: Stack(
+          children: [
+            Positioned(
+              bottom: 25,
+              right: 10,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(20)),
+                width: 70,
+                height: 50,
               ),
             ),
-          ),
+            Positioned(
+              bottom: 30,
+              right: 15,
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(() => CreateNewNotes());
+                },
+                child: Container(
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: Colors.grey[900],
+                      borderRadius: BorderRadius.circular(20)),
+                  height: 55,
+                  child: Container(
+                    height: 20,
+                    width: 30,
+                    child: Image.asset(
+                      "assets/images/Screenshot_from_2022-01-01_17-09-59-removebg-preview.png",
+                      scale: 5.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ),
-     
+      )
     ]);
   }
-
- 
 }

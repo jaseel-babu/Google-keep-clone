@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:keepsample/controller/services/database_services.dart';
 import 'package:keepsample/model/notes.dart';
+import 'package:intl/intl.dart';
 
 class CreateNewNotes extends StatefulWidget {
   CreateNewNotes({Key? key}) : super(key: key);
@@ -17,17 +18,15 @@ class _CreateNewNotesState extends State<CreateNewNotes> {
   TextEditingController titleControlletr = TextEditingController();
   // final dataservices = DatabaseServices();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+  String? currenttime;
   TextEditingController noteControlletr = TextEditingController();
   @override
   void dispose() {
-    // titleControlletr.text.isNotEmpty
-    //     ? dataservices.createnewnote(
-    //         titleControlletr.text, noteControlletr.text)
-    //     : print("moonji");
-    // print(dataservices.readItems());
-    storefirestore(titleControlletr.text, noteControlletr.text);
-
+    if (titleControlletr.text.isNotEmpty || noteControlletr.text.isNotEmpty) {
+       currenttime = DateFormat.jm().format(DateTime.now());
+     storefirestore(
+        titleControlletr.text, noteControlletr.text, );}
+   
     super.dispose();
   }
 
@@ -71,8 +70,4 @@ class _CreateNewNotesState extends State<CreateNewNotes> {
       ),
     );
   }
-
- 
-
- 
 }

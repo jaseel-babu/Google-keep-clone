@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keepsample/controller/navigationController.dart';
+import 'package:keepsample/model/userModel.dart';
 
 class MenuBar extends StatelessWidget {
    MenuBar({Key? key}) : super(key: key);
-final controller = Get.put(BottambarController());
+final controller = Get.put(Controller());
+UserModel usermodel = UserModel();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,18 +30,18 @@ final controller = Get.put(BottambarController());
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children:  [
-            Icon(
+    const        Icon(
               Icons.view_column_outlined,
               color: Colors.white70,
             ),
-            SizedBox(
+      const      SizedBox(
               width: 10,
             ),
-           GetBuilder<BottambarController>(
+           GetBuilder<Controller>(
 
              builder: (controller) {
-               return CircleAvatar(backgroundImage:controller.googleUser==null?null:
-               NetworkImage(controller.googleUser!.photoUrl!),);
+               return CircleAvatar(backgroundImage:controller.usermodel.imageurl==null?null:
+               NetworkImage(controller.usermodel.imageurl!),);
              }
            )
           ],

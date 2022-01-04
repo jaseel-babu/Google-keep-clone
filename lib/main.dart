@@ -27,7 +27,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  final controller = Get.put(BottambarController());
+  final controller = Get.put(Controller());
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
     bool? value = prefs.getBool("userishere");
     print(value);
     
-      value != true ? controller.signInWithGoogle() : print("poyi");
+      value != true ? controller.signInWithGoogle() : controller.fetchuserdata();
     
   }
 
@@ -64,9 +64,7 @@ class _MyAppState extends State<MyApp> {
               ),
             );
           }
-          Timer(Duration(seconds: 3), () {
-            print(" This line is execute after 5 seconds");
-          });
+        
           return HomePage();
         });
   }

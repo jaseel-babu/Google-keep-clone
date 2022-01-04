@@ -15,44 +15,65 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-  final controller = Get.put(BottambarController());
+  final controller = Get.put(Controller());
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          MenuBar(),
-          StreamBuilder<List<NotesModel>>(
-            stream: listTodos(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return const CircularProgressIndicator();
-              }
-              List<NotesModel> notes = snapshot.data!.toList();
-
-              return GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 5),
-                itemCount: notes.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Column(
-                      children: [
-                        Text(notes[index].title.toString()),
-                        Text(notes[index].notes.toString())
-                      ],
-                    ),
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: GetBuilder<Controller>(builder: (controller) {
+          return Column(
+            children: [
+              MenuBar(),
+              StreamBuilder<List<NotesModel>>(
+                stream: listTodos(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    print("nodata");
+                    return const CircularProgressIndicator();
+                  }
+                  controller.notes = snapshot.data!.toList();
+                  print(snapshot.data);
+                  return GridView.builder(
+                    physics: ScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 5,
+                            crossAxisSpacing: 5),
+                    itemCount: controller.notes.length,
+                    itemBuilder: (context, index) {
+                      return Dismissible(
+                        onDismissed: (direction) async{
+                          if (direction == DismissDirection.startToEnd) {setState(() {
+                                      controller.ondismissCards(index);
+                          });
+                  
+   
+                          }
+                        },
+                        key: Key(controller.notes[index].toString()),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Column(
+                            children: [
+                              Text(controller.notes[index].title.toString()),
+                              Text(controller.notes[index].notes.toString())
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
-              );
-            },
-          )
-        ],
+              )
+            ],
+          );
+        }),
       ),
     );
   }

@@ -2,17 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keepsample/controller/navigationController.dart';
 import 'package:keepsample/view/consts/pages.dart';
-import 'package:keepsample/view/createnote.dart/createNewNotes.dart';
-import 'package:keepsample/view/homepage/widgets/archeive.dart';
-import 'package:keepsample/view/homepage/widgets/delete.dart';
-import 'package:keepsample/view/homepage/widgets/help&feedback.dart';
-import 'package:keepsample/view/homepage/widgets/notes.dart';
-import 'package:keepsample/view/homepage/widgets/reminder.dart';
-import 'package:keepsample/view/homepage/widgets/settings.dart';
+
 
 class DrawerMenu extends StatelessWidget {
   DrawerMenu({Key? key}) : super(key: key);
-  final controller = Get.put(BottambarController());
+  final controller = Get.put(Controller());
   @override
   Widget build(BuildContext context) {
     return Drawer(
