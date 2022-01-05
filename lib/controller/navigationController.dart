@@ -15,6 +15,7 @@ class Controller extends GetxController {
   Widget currentStage = NotesPage();
   bool userlogged = true;
   int currentTab = 0;
+  bool edited = false;
   GoogleSignInAuthentication? googleAuth;
   GoogleSignInAccount? googleUser;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -67,13 +68,5 @@ class Controller extends GetxController {
     update();
   }
 
-  ondismissCards(int index) async {
-    print("villich");
-    archeive.add(notes[index]);
-    notes.removeAt(index);
-    print(archeive[0].title);
-    update(
-   
-    );
-  }
+  
 }

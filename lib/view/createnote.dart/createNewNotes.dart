@@ -5,33 +5,38 @@ import 'package:keepsample/model/notes.dart';
 import 'package:intl/intl.dart';
 
 class CreateNewNotes extends StatefulWidget {
-  CreateNewNotes({Key? key}) : super(key: key);
+  String? title;
+  String? notes;
+  String? uid;
+  CreateNewNotes({Key? key, this.title, this.notes, this.uid})
+      : super(key: key);
 
   @override
   State<CreateNewNotes> createState() => _CreateNewNotesState();
 }
 
-final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-final CollectionReference _mainCollection = _firestore.collection('notes');
-
 class _CreateNewNotesState extends State<CreateNewNotes> {
   TextEditingController titleControlletr = TextEditingController();
-  // final dataservices = DatabaseServices();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  String? titlevalue="";
   String? currenttime;
+  String? notesvalue="";
+  String? userid;
   TextEditingController noteControlletr = TextEditingController();
   @override
   void dispose() {
-    if (titleControlletr.text.isNotEmpty || noteControlletr.text.isNotEmpty) {
-       currenttime = DateFormat.jm().format(DateTime.now());
-     storefirestore(
-        titleControlletr.text, noteControlletr.text, );}
-   
+    if (titlevalue != "" || notesvalue != "") {
+      controller.edited == true
+          ? editfirestore(titlevalue!, notesvalue!, userid!)
+          : storefirestore(titlevalue!, notesvalue!);
+      print(controller.edited);
+    }
+    controller.edited = false;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    userid = widget.uid;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -48,16 +53,22 @@ class _CreateNewNotesState extends State<CreateNewNotes> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              TextField(
-                controller: titleControlletr,
+              TextFormField(
+                initialValue: widget.title,
+                onChanged: (value) {
+                  titlevalue = value;
+                },
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                     hintText: "Title",
                     border: InputBorder.none,
                     hintStyle: TextStyle(color: Colors.white70, fontSize: 20)),
               ),
-              TextField(
-                controller: noteControlletr,
+              TextFormField(
+                initialValue: widget.notes,
+                onChanged: (value) {
+                  notesvalue = value;
+                },
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                     hintText: "Note",

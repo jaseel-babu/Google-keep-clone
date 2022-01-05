@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:keepsample/controller/navigationController.dart';
 import 'package:keepsample/model/notes.dart';
 
@@ -8,14 +9,14 @@ final controller = Get.put(Controller());
 CollectionReference notesCollection =
     FirebaseFirestore.instance.collection("user");
 NotesModel notesmodel = NotesModel();
-
+DateTime now = DateTime.now();
 storefirestore(
   String title,
   String notes,
 ) async {
   notesmodel.title = title;
   notesmodel.notes = notes;
-  notesmodel.currentTime = DateTime.now();
+  notesmodel.currentTime = DateFormat('yyyy-MM-dd – kk:mm:ss').format(now);
   return controller.googleUser == null
       ? await notesCollection
           .doc(controller.usermodel.id)
@@ -23,8 +24,47 @@ storefirestore(
           .add(notesmodel.toMap())
       : await notesCollection
           .doc(controller.googleUser!.id)
-          .collection("notes") 
+          .collection("notes")
           .add(notesmodel.toMap());
+}
+
+editfirestore(
+  String title,
+  String notes,
+  String uid
+) async {
+  notesmodel.title = title;
+  notesmodel.notes = notes;
+  notesmodel.currentTime = DateFormat('yyyy-MM-dd – kk:mm:ss').format(now);
+  return controller.googleUser == null
+      ? await notesCollection
+          .doc(controller.usermodel.id)
+          .collection("notes")
+          .doc(uid)
+          .update(notesmodel.toMap())
+      : await notesCollection
+          .doc(controller.googleUser!.id)
+          .collection("notes")
+          .doc(uid)
+          .update(notesmodel.toMap());
+}
+
+deletefirestore(
+ 
+  String uid
+) async {
+  
+  return controller.googleUser == null
+      ? await notesCollection
+          .doc(controller.usermodel.id)
+          .collection("notes")
+          .doc(uid)
+          .delete()
+      : await notesCollection
+          .doc(controller.googleUser!.id)
+          .collection("notes")
+          .doc(uid)
+          .delete();
 }
 
 List<NotesModel> todoFromFirestore(QuerySnapshot snapshot) {
@@ -47,7 +87,8 @@ listTodos() {
           .map(todoFromFirestore)
       : notesCollection
           .doc(controller.googleUser!.id)
-          .collection("notes").orderBy("currenttime",descending: true)
+          .collection("notes")
+          .orderBy("currenttime", descending: true)
           .snapshots()
           .map(todoFromFirestore);
 }
